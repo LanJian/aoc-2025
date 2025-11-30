@@ -4,7 +4,7 @@ set -e
 # This bit of crazy generates the new crate and adds the relevant imports and
 # macro lines to the cli and benchmarking crates
 
-cargo generate --path ./template --lib --name "$2" -d day="$1"
+cargo generate --no-workspace --path ./template --lib --name "$2" -d day="$1"
 
 printf -v DAY "%03d" "$1"
 
