@@ -7,6 +7,7 @@ use anyhow::{Context, Result};
 use aoc_plumbing::Problem;
 use clap::{Args, CommandFactory, Parser, Subcommand};
 use clap_complete::{generate, shells::Zsh};
+use secret_entrance::SecretEntrance;
 // import_marker
 
 // I'm not proud
@@ -164,5 +165,6 @@ impl GenerateCompletions {
 }
 
 generate_cli! {
+    (SecretEntrance, 1),
     // command_marker
 }
