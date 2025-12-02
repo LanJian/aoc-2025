@@ -74,22 +74,6 @@ impl GiftShop {
         }
 
         ret
-
-        //let mut ids = FxHashSet::default();
-
-        //for interval in &self.intervals {
-        //let (s, e) = (interval.start, interval.end);
-        //let n = s.ilog10() + 1;
-        //let m = e.ilog10() + 1;
-        //let mut i = if n % 2 == 0 { n } else { n + 1 };
-
-        //while i <= m {
-        //Self::foo(interval, i, i / 2, &mut ids);
-        //i += 2
-        //}
-        //}
-
-        //ids.iter().sum()
     }
 
     fn more_invalid_ids(&self) -> u64 {
