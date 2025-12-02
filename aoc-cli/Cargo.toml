@@ -17,3 +17,4 @@ clap_complete = "4"
 serde = { workspace = true }
 serde_json = { workspace = true }
 secret-entrance = { path = "../day-001-secret-entrance" }
+gift-shop = { path = "../day-002-gift-shop" }
