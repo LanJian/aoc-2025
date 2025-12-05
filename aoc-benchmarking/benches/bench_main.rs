@@ -1,6 +1,7 @@
 use criterion::criterion_main;
 
 use aoc_benchmarking::aoc_benches;
+use cafeteria::Cafeteria;
 use gift_shop::GiftShop;
 use lobby::Lobby;
 use printing_department::PrintingDepartment;
@@ -38,6 +39,13 @@ aoc_benches! {
         "../day-004-printing-department/input.txt",
         PrintingDepartment,
         "Combined (including parsing)"
+    ),
+    (
+        day_005,
+        "../day-005-cafeteria/input.txt",
+        Cafeteria,
+        "Part 1",
+        "Part 2"
     ),
     // bench_marker
 }
