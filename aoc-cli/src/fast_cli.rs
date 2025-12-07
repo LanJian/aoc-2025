@@ -1,0 +1,43 @@
+use std::env;
+
+use aoc_plumbing::Problem;
+use cafeteria::Cafeteria;
+use gift_shop::GiftShop;
+use laboratories::Laboratories;
+use lobby::Lobby;
+use printing_department::PrintingDepartment;
+use secret_entrance::SecretEntrance;
+use trash_compactor::TrashCompactor;
+// import_marker
+
+macro_rules! generate_cli {
+    ($(($name:ident, $day:literal)),* $(,)?) => {
+        pub fn run() -> anyhow::Result<()> {
+            let day: u8 = env::var("AOC_DAY")?.parse()?;
+            let input_file = env::var("AOC_INPUT")?;
+            let input = std::fs::read_to_string(&input_file)?;
+            match day {
+                $(
+                $day => {
+                    let sln = $name::solve(&input)?;
+                    println!(r#"{{"part_one": "{}", "part_two": "{}"}}"#, sln.part_one, sln.part_two);
+                },
+                )*
+                _ => { println!("\"not implemented\""); }
+            }
+
+            Ok(())
+        }
+    }
+}
+
+generate_cli! {
+    (SecretEntrance, 1),
+    (GiftShop, 2),
+    (Lobby, 3),
+    (PrintingDepartment, 4),
+    (Cafeteria, 5),
+    (TrashCompactor, 6),
+    (Laboratories, 7),
+    // command_marker
+}

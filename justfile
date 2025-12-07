@@ -25,3 +25,6 @@ flame DAY:
 # builds the cli
 build-cli:
     cargo build -p aoc-cli --release
+
+build-cli-ci:
+    RUSTFLAGS="-C target-cpu=native" cargo build -p aoc-cli --features lite --profile release-ci --target=x86_64-unknown-linux-musl

@@ -23,3 +23,11 @@ thiserror = "2.0.17"
 
 [profile.release]
 lto = true
+
+[profile.release-ci]
+inherits = "release"
+opt-level = 3
+codegen-units = 1
+debug = false
+incremental = false
+panic = "abort"
