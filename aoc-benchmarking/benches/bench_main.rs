@@ -3,6 +3,7 @@ use criterion::criterion_main;
 use aoc_benchmarking::aoc_benches;
 use cafeteria::Cafeteria;
 use gift_shop::GiftShop;
+use laboratories::Laboratories;
 use lobby::Lobby;
 use printing_department::PrintingDepartment;
 use secret_entrance::SecretEntrance;
@@ -53,6 +54,13 @@ aoc_benches! {
         "../day-006-trash-compactor/input.txt",
         TrashCompactor,
         "Combined (including parsing)"
+    ),
+    (
+        day_007,
+        "../day-007-laboratories/input.txt",
+        Laboratories,
+        "Part 1",
+        "Part 2"
     ),
     // bench_marker
 }
