@@ -1,9 +1,8 @@
 use std::str::FromStr;
 
-use anyhow::{Result, anyhow};
+use anyhow::{anyhow, Result};
 use aoc_common::grid::Coordinate;
 use aoc_plumbing::Problem;
-use rustc_hash::FxHashMap;
 
 #[derive(Debug, Clone, Copy, Default)]
 struct BitSet {
@@ -172,43 +171,30 @@ impl Laboratories {
         ret
     }
 
-    fn simulate_quantum(
-        &self,
-        row: usize,
-        col: usize,
-        memo: &mut FxHashMap<(usize, usize), usize>,
-    ) -> usize {
-        if row >= self.splitters.len() {
-            return 1;
-        }
+    fn simulate_quantum(&self) -> usize {
+        let mut acc = vec![0; 256];
+        acc[self.start.col() as usize] += 1;
 
-        if let Some(&x) = memo.get(&(row, col)) {
-            return x;
-        }
+        for mut splitter_array in self.splitters.iter().copied() {
+            let mut j = 0;
+            while !splitter_array.is_zero() {
+                let offset = splitter_array.leading_zeros();
+                j += offset;
+                splitter_array = splitter_array.bitshift_left(offset + 1);
 
-        let mut ret = 0;
-        let mut cur = BitSet::default();
-        cur.set(col);
+                if j > 0 {
+                    acc[j - 1] += acc[j];
+                }
+                if j < acc.len() - 1 {
+                    acc[j + 1] += acc[j];
+                }
+                acc[j] = 0;
 
-        for i in row..self.splitters.len() {
-            let splitter_array = self.splitters[i];
-            let overlap = cur.bitand(&splitter_array);
-            if overlap.is_zero() {
-                continue;
+                j += 1;
             }
-
-            let position = overlap.leading_zeros();
-            if position > 0 {
-                ret += self.simulate_quantum(i, position - 1, memo);
-            }
-            ret += self.simulate_quantum(i, position + 1, memo);
-
-            memo.insert((row, col), ret);
-            return ret;
         }
 
-        memo.insert((row, col), 1);
-        1
+        acc.iter().sum()
     }
 }
 
@@ -226,7 +212,7 @@ impl Problem for Laboratories {
     }
 
     fn part_two(&mut self) -> Result<Self::P2, Self::ProblemError> {
-        Ok(self.simulate_quantum(0, self.start.col() as usize, &mut FxHashMap::default()))
+        Ok(self.simulate_quantum())
     }
 }
 
