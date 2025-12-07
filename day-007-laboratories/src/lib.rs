@@ -1,6 +1,6 @@
 use std::str::FromStr;
 
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use aoc_common::grid::Coordinate;
 use aoc_plumbing::Problem;
 

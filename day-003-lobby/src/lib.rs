@@ -29,15 +29,14 @@ impl BatteryBank {
         let n = self.batteries.len();
         let m = count;
         let mut dp = vec![0; m + 1];
+        let mut new_dp = vec![0; m + 1];
 
         for i in 1..=n {
-            let mut new_dp = vec![0; m + 1];
-
             for j in 1..=m {
                 new_dp[j] = dp[j].max(dp[j - 1] * 10 + self.batteries[i - 1]);
             }
 
-            dp = new_dp;
+            std::mem::swap(&mut dp, &mut new_dp);
         }
 
         dp
