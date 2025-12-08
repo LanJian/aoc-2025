@@ -2,7 +2,7 @@ use std::{cmp, collections::BinaryHeap, str::FromStr};
 
 use aoc_common::algebra::Point3;
 use aoc_plumbing::Problem;
-use rustc_hash::{FxHashMap, FxHashSet};
+use rustc_hash::FxHashMap;
 
 #[derive(Debug, Clone, Copy, Default, Eq, PartialEq)]
 struct PointPair {
@@ -82,10 +82,7 @@ impl FromStr for Playground {
 }
 
 impl Playground {
-    fn root(
-        point: &Point3<u64>,
-        adj: &FxHashMap<Point3<u64>, FxHashSet<Point3<u64>>>,
-    ) -> Point3<u64> {
+    fn root(point: &Point3<u64>, adj: &FxHashMap<Point3<u64>, Vec<Point3<u64>>>) -> Point3<u64> {
         let ns = &adj[point];
         if ns.len() == 1 {
             // ok to unwrap, we know len is 1
@@ -95,11 +92,8 @@ impl Playground {
     }
 
     fn process(&mut self) {
-        let mut adj: FxHashMap<Point3<u64>, FxHashSet<Point3<u64>>> = self
-            .points
-            .iter()
-            .map(|x| (*x, FxHashSet::default()))
-            .collect();
+        let mut adj: FxHashMap<Point3<u64>, Vec<Point3<u64>>> =
+            self.points.iter().map(|x| (*x, Vec::default())).collect();
 
         let mut i = 0;
         while let Some(pair) = self.point_pairs.pop() {
@@ -109,24 +103,24 @@ impl Playground {
 
             if a_root != b_root {
                 // move the smaller group to bigger group
-                let mut small_group = FxHashSet::default();
+                let mut small_group = Vec::default();
                 let big_group_root = if adj[&a_root].len() < adj[&b_root].len() {
                     small_group.extend(&adj[&a_root]);
-                    small_group.insert(a_root);
+                    small_group.push(a_root);
                     b_root
                 } else {
                     small_group.extend(&adj[&b_root]);
-                    small_group.insert(b_root);
+                    small_group.push(b_root);
                     a_root
                 };
 
                 for p in &small_group {
                     adj.entry(*p).and_modify(|x| {
                         x.clear();
-                        x.insert(big_group_root);
+                        x.push(big_group_root);
                     });
                     adj.entry(big_group_root).and_modify(|x| {
-                        x.insert(*p);
+                        x.push(*p);
                     });
                 }
 
