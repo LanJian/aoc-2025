@@ -5,6 +5,7 @@ use cafeteria::Cafeteria;
 use gift_shop::GiftShop;
 use laboratories::Laboratories;
 use lobby::Lobby;
+use playground::Playground;
 use printing_department::PrintingDepartment;
 use secret_entrance::SecretEntrance;
 use trash_compactor::TrashCompactor;
@@ -61,6 +62,12 @@ aoc_benches! {
         Laboratories,
         "Part 1",
         "Part 2"
+    ),
+    (
+        day_008,
+        "../day-008-playground/input.txt",
+        Playground,
+        "Combined (including parsing)"
     ),
     // bench_marker
 }
