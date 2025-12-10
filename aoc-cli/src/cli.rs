@@ -8,6 +8,7 @@ use aoc_plumbing::Problem;
 use cafeteria::Cafeteria;
 use clap::{Args, CommandFactory, Parser, Subcommand};
 use clap_complete::{generate, shells::Zsh};
+use factory::Factory;
 use gift_shop::GiftShop;
 use laboratories::Laboratories;
 use lobby::Lobby;
@@ -180,5 +181,6 @@ generate_cli! {
     (TrashCompactor, 6),
     (Laboratories, 7),
     (Playground, 8),
+    (Factory, 10),
     // command_marker
 }

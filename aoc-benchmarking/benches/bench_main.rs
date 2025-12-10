@@ -2,6 +2,7 @@ use criterion::criterion_main;
 
 use aoc_benchmarking::aoc_benches;
 use cafeteria::Cafeteria;
+use factory::Factory;
 use gift_shop::GiftShop;
 use laboratories::Laboratories;
 use lobby::Lobby;
@@ -68,6 +69,13 @@ aoc_benches! {
         "../day-008-playground/input.txt",
         Playground,
         "Combined (including parsing)"
+    ),
+    (
+        day_010,
+        "../day-010-factory/input.txt",
+        Factory,
+        "Part 1",
+        "Part 2"
     ),
     // bench_marker
 }
