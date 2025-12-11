@@ -8,6 +8,7 @@ use laboratories::Laboratories;
 use lobby::Lobby;
 use playground::Playground;
 use printing_department::PrintingDepartment;
+use reactor::Reactor;
 use secret_entrance::SecretEntrance;
 use trash_compactor::TrashCompactor;
 // import_marker
@@ -74,6 +75,13 @@ aoc_benches! {
         day_010,
         "../day-010-factory/input.txt",
         Factory,
+        "Part 1",
+        "Part 2"
+    ),
+    (
+        day_011,
+        "../day-011-reactor/input.txt",
+        Reactor,
         "Part 1",
         "Part 2"
     ),

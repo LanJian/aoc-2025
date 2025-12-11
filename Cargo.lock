@@ -86,6 +86,7 @@ dependencies = [
  "lobby",
  "playground",
  "printing-department",
+ "reactor",
  "secret-entrance",
  "trash-compactor",
 ]
@@ -106,6 +107,7 @@ dependencies = [
  "mimalloc",
  "playground",
  "printing-department",
+ "reactor",
  "secret-entrance",
  "serde",
  "serde_json",
@@ -790,6 +792,18 @@ checksum = "22e18b0f0062d30d4230b2e85ff77fdfe4326feb054b9783a3460d8435c8ab91"
 dependencies = [
  "crossbeam-deque",
  "crossbeam-utils",
+]
+
+[[package]]
+name = "reactor"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "aoc-common",
+ "aoc-plumbing",
+ "nom",
+ "rustc-hash",
+ "serde",
 ]
 
 [[package]]

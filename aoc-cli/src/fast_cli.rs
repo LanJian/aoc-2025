@@ -8,6 +8,7 @@ use laboratories::Laboratories;
 use lobby::Lobby;
 use playground::Playground;
 use printing_department::PrintingDepartment;
+use reactor::Reactor;
 use secret_entrance::SecretEntrance;
 use trash_compactor::TrashCompactor;
 // import_marker
@@ -43,5 +44,6 @@ generate_cli! {
     (Laboratories, 7),
     (Playground, 8),
     (Factory, 10),
+    (Reactor, 11),
     // command_marker
 }
